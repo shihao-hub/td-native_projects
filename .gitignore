@@ -1,0 +1,39 @@
+# 构建目录（CMake / xmake 等）
+build/
+build-*/
+out/
+cmake-build-*/
+.xmake/
+
+# 对象文件与静态库
+*.obj
+*.o
+*.a
+*.lib
+
+# 可执行与动态库
+*.exe
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# 调试与链接中间产物
+*.pdb
+*.ilk
+*.exp
+*.idb
+
+# 构建系统生成文件（不入库，本地重新生成）
+compile_commands.json
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+.cache/
+
+# LSP 缓存
+.ccls-cache/
+clangd/
+
+# Lua 字节码
+*.luac
