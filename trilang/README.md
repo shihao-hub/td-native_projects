@@ -8,6 +8,8 @@ native_projects 首个示范项目，演示三种语言在同一项目内的经�
 | C++ | `src/main.cpp` | 宿主：管理 Lua 虚拟机生命周期、注册 C 函数、执行脚本并回调 Lua 函数 |
 | Lua | `scripts/demo.lua` | 脚本层：调用 C 函数、定义供 C++ 回调的函数 |
 
+> `meta/host_env.lua`：宿主注入全局（`tri`）的类型声明，供 lua-language-server 分析用——LSP 按语言隔离、没有跨语言 LSP，宿主 API 用 EmmyLua 注解声明是业界通行做法。
+
 ## 依赖策略
 
 - **Lua 5.1.5**：CMake `FetchContent` 拉源码随项目编译为静态库（本机 LuaForWindows 为 32 位，不可链接 x64）
