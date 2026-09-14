@@ -1,5 +1,6 @@
--- host_env.lua —— 宿主注入全局的类型声明
--- 仅供 lua-language-server 分析用（EmmyLua 注解），运行时不 require 本文件。
+---@meta
+-- host_env.lua —— 宿主注入全局的类型声明（声明文件，不参与诊断，运行时不 require）
+-- 仅供 lua-language-server 分析用（EmmyLua 注解）。
 -- tri 表由 C++ 宿主注册（src/main.cpp：lua_setglobal(L, "tri")），
 -- 函数实现在 C 库 src/mathutil.c，经 main.cpp 桥接暴露给 Lua。
 
