@@ -32,9 +32,10 @@ ctest --preset clang-debug
 
 preset 二选一：`clang-debug`（clang + Ninja，快） / `msvc-debug`（MSVC + VS 生成器，exe 在 `out/build/msvc-debug/Debug/`）。
 
-运行 demo（脚本随构建同步到 exe 旁）：
+运行 demo（一条命令：自动构建依赖 + 以 exe 目录为工作目录，免手动 cd）：
 
 ```powershell
-cd out/build/clang-debug
-./trilang.exe
+cmake --build --preset clang-debug --target run
 ```
+
+也可以直接执行 `.\out\build\clang-debug\trilang.exe`（脚本已随构建同步到 exe 旁）。

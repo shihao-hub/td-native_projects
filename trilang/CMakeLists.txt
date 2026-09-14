@@ -76,6 +76,15 @@ add_custom_command(TARGET trilang POST_BUILD
         ${CMAKE_CURRENT_SOURCE_DIR}/scripts $<TARGET_FILE_DIR:trilang>/scripts
 )
 
+# 便捷运行：cmake --build --preset <preset> --target run
+# （自动先构建依赖，并以 exe 所在目录为工作目录，免手动 cd）
+add_custom_target(run
+    COMMAND $<TARGET_FILE:trilang>
+    WORKING_DIRECTORY $<TARGET_FILE_DIR:trilang>
+    DEPENDS trilang
+    USES_TERMINAL
+)
+
 # ---- 测试：doctest + CTest ----
 FetchContent_Declare(
     doctest
