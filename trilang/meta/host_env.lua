@@ -17,3 +17,7 @@ function tri.fib(n) end
 ---@param b integer
 ---@return integer gcd(a, b)
 function tri.gcd(a, b) end
+
+---@param s string|nil
+---@return integer dump_lua_stack(s)
+function tri.dump_lua_stack(s) end
