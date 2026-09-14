@@ -1,0 +1,5 @@
+# clangd 配置：编译数据库由 CMake clang-debug preset 生成在 out/build/ 下，
+# 不在 clangd 默认探测路径（文件向上逐级的 compile_commands.json 与 build/）中，
+# 在此显式指定（相对 .clangd 所在目录解析）
+CompileFlags:
+  CompilationDatabase: out/build/clang-debug
