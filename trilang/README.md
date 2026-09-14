@@ -15,16 +15,26 @@ native_projects 首个示范项目，演示三种语言在同一项目内的经�
 
 ## 构建与运行
 
+`out/` 构建目录由 `CMakePresets.json` 的 `binaryDir` 指定，`CMakeLists.txt` 只负责定义编译目标（源文件与链接关系）——源码树与构建树完全分离，删掉 `out/` 即彻底清理。
+
 ```powershell
-# 二选一：clang + Ninja（快） / MSVC + VS 生成器
+# ① 配置：读 preset 在 out/build/clang-debug/ 生成 build.ninja、
+#    compile_commands.json（clangd 用）、CMakeCache.txt，
+#    并把 lua/doctest 源码下到 _deps/
 cmake --preset clang-debug
+
+# ② 构建：调 Ninja 按 build.ninja 并行编译链接，产出 trilang.exe / test_mathutil.exe
 cmake --build --preset clang-debug
 
-# 运行 demo（在构建目录内，脚本随构建同步）
+# ③ 测试：CTest 驱动 doctest 用例
+ctest --preset clang-debug
+```
+
+preset 二选一：`clang-debug`（clang + Ninja，快） / `msvc-debug`（MSVC + VS 生成器，exe 在 `out/build/msvc-debug/Debug/`）。
+
+运行 demo（脚本随构建同步到 exe 旁）：
+
+```powershell
 cd out/build/clang-debug
 ./trilang.exe
-
-# 跑测试
-cd ../../..
-ctest --preset clang-debug
 ```
